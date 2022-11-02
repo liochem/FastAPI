@@ -1,4 +1,10 @@
 from fastapi import FastAPI
+from datetime import date
+from pydantic import BaseModel
+
+class P(BaseModel):
+    message: str
+    currentdate: str
 
 app = FastAPI()
 
@@ -6,4 +12,6 @@ app = FastAPI()
 
 async def root(path : str):
     if path == "hello":
-        return "Hello you"
+        d = date.today()
+        return {"message": "Hello you", "current date": d}
+
